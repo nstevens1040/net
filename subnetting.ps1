@@ -222,7 +222,7 @@ if([Security.Principal.WindowsPrincipal]::New([Security.Principal.WindowsIdentit
         $_.InterfaceAlias -notmatch 'loopback'
     })[0].InterfaceAlias)[0].MACAddress
     $mac_reg = [regex]::new("([0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2}-[0-9a-f]{2})")
-    $arp = @(cmd /c "arp -a 2>&1").Where({[regex]::new("      [0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.+dynamic").Match($_).Success})
+    $arp = @(cmd /c "arp -a 2>&1").Where({[regex]::new("^\s+[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.+dynamic").Match($_).Success})
     for($i = 0; $i -lt $net_info.Count; $i++)
     {
         $mac = $mac_reg.Match($arp.Where({$_ -match " $($net_info[$i].IPAddress) "})[0]).Groups[1].Value
