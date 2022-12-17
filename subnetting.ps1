@@ -258,10 +258,12 @@ if([Security.Principal.WindowsPrincipal]::New([Security.Principal.WindowsIdentit
         }
     }
     $html_table = $html_start + [string]::Join([string]::Empty,$html_table_rows) + $html_end
+    $html_filepath = "$($ENV:USERPROFILE)\Desktop\$([Math]::Round(([datetime]::UtcNow - [datetime]::Parse("1970-01-01")).TotalSeconds))_subnet_info.html"
     [io.File]::WriteAllBytes(
-        "$($ENV:USERPROFILE)\Desktop\$([Math]::Round(([datetime]::UtcNow - [datetime]::Parse("1970-01-01")).TotalSeconds))_subnet_info.html",
+        $html_filepath,
         [System.Text.Encoding]::UTF8.GetBytes($html_table)
     )
+    start $html_filepath
 #    $net_info | Export-Csv "$($ENV:USERPROFILE)\Desktop\$([Math]::Round(([datetime]::UtcNow - [datetime]::Parse("1970-01-01")).TotalSeconds))_subnet_info.csv"
 } else {
     $null = ([System.Diagnostics.Process]@{
