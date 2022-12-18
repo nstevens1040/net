@@ -325,6 +325,15 @@
                 border-left: none;
                 border-top: 1px solid rgb(36,36,36); 
             }
+            .question {
+                color: #C586C0;
+            }
+            .dollarsign {
+                color: #9CDCFE;
+            }
+            .singlestring {
+                color: #CE9178;
+            }
         </style>
         <style type="text/css">
             .code1 {
@@ -511,7 +520,7 @@
                 line-height: 1.30em;
                 font-size: 1em;
                 font-family: Consolas;
-                color: #767676;
+                color: #979797;
             }
             .envvar {
                 line-height: 1.30em;
@@ -906,13 +915,10 @@
                             <code class="code2">
                                 <ul class="pwshlist">
                                     <li class="pwshitem" style="margin: 0; padding: 0;">
-                                        <span class="command">Set-ExecutionPolicy </span><span class="param">Bypass </span><span class="switch">-Scope </span><span class="param">Process </span><span class="switch">-Force;</span>
+                                        <span class="command">New-NetIPAddress </span><span class="switch">-InterfaceIndex </span><span class="bracket">(</span><span class="dotnettype">@</span><span class="bracket">(</span><span class="command">Get-NetAdapter </span><span class="bracket">| </span><span class="question">? </span><span class="bracket">{ </span><span class="dollarsign">$_</span><span class="command">.Status </span><span class="switch">-eq </span><span class="singlestring">'Up' </span><span class="bracket">})[</span><span class="int">0</span><span class="bracket">].ifIndex) <span class="switch">-AddressFamily </span><span class="bracket">IPv4 </span><span class="switch">-IPAddress </span><span class="int">192.168.1.99 </span><span class="switch">-DefaultGateway </span><span class="int">192.168.1.1 </span><span class="switch">-PrefixLength </span><span class="int">24</span>
                                     </li>
                                     <li class="pwshitem" style="margin: 0; padding: 0;">
-                                        <span class="bracket">[</span><span class="dotnettype">System.Net.ServicePointManager</span><span class="bracket">]::SecurityProtocol = [</span><span class="dotnettype">System.Net.ServicePointManager</span><span class="bracket">]::SecurityProtocol </span><span class="switch">-bor </span><span class="int">3072</span><span class="bracket">;</span>
-                                    </li>
-                                    <li class="pwshitem" style="margin: 0; padding: 0;">
-                                        <span class="command">iex </span><span class="bracket">(</span><span class="command">irm </span><span class="bracket">https://net.nanick.org/static.ps1)</span>
+                                        <span class="command">Set-DnsClientServerAddress </span><span class="switch">-InterfaceIndex </span><span class="bracket">(</span><span class="dotnettype">@</span><span class="bracket">(</span><span class="command">Get-NetAdapter </span><span class="bracket">| </span><span class="question">? </span><span class="bracket">{ </span><span class="dollarsign">$_</span><span class="command">.Status </span><span class="switch">-eq </span><span class="singlestring">'Up' </span><span class="bracket">})[</span><span class="int">0</span><span class="bracket">].ifIndex) <span class="switch">-ServerAddresses </span><span class="int">192.168.1.1</span>
                                     </li>
                                 </ul>
                                 <a onclick="onCopyClick(this);" class="copy">Copy</a>
